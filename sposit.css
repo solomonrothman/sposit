@@ -1,0 +1,47 @@
+/* Set wrapper properties for CSS3 multiple column module with basic defaults to 1 and basic styling*/
+.sposit-column-wrapper {
+  column-count: 1;
+  -webkit-column-count: 1; /* Chrome, Safari, Opera */
+  -moz-column-count: 1; /* Firefox */
+
+  column-width: 240px;
+  -webkit-column-width: 240px;
+  -moz-column-width: 240px;
+
+  column-fill: balance;
+  -moz-column-fill: balance;
+  -webkit-column-fill: balance;
+
+  -webkit-column-rule-width: 1px;
+  -webkit-column-rule-style: solid;
+  -webkit-column-rule-color: black;
+
+  -moz-column-column-rule-width: 1px;
+  -moz-column-column-rule-style: solid;
+  -moz-column-column-rule-color: black;
+
+  column-gap: balance;
+  -moz-column-gap: balance;
+  -webkit-column-gap: balance;
+}
+
+/* Set container properties for the elements inside .sposit-column-wrapper, enforces a min-width and inline-block to ensure the deafult layout is coherent.*/
+.sposit-container {
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+  min-width: 240px;
+  display: inline-block;
+}
+
+/* Can cause distortion, but makes sure the image fills the entire column even when resized.*/
+.sposit-column-wrapper img {
+  width: 100%;
+}
+
+/* Provides a symantic class to have an element span all columns */
+.sposit-span-all {
+  -webkit-column-span: all;
+  column-span: all;
+  -moz-column-span: all;
+}
