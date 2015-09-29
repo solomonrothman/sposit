@@ -12,13 +12,6 @@
   -moz-column-fill: balance;
   -webkit-column-fill: balance;
 
-  -webkit-column-rule-width: 1px;
-  -webkit-column-rule-style: solid;
-  -webkit-column-rule-color: black;
-
-  -moz-column-column-rule-width: 1px;
-  -moz-column-column-rule-style: solid;
-  -moz-column-column-rule-color: black;
 
   column-gap: balance;
   -moz-column-gap: balance;
