@@ -42,6 +42,7 @@
      *
      * @type {{minColumnWidth: number, wrapperElement: string, containerElement: string, maxColumnNum: string, gap: string, respondOnResize: string, columnOffset: number}}
      */
+
     var defaults = {
       minColumnWidth: 240,
       wrapperElement: '.sposit-column-wrapper',
@@ -52,8 +53,9 @@
       columnOffset: 10
     };
 
+    var test = typeof arguments[0]
     // Create options by extending defaults with the passed in arugments
-    if (arguments[0] && typeof arguments[0] == "object") {
+    if (test && test == "object") {
       this.options = extendDefaults(defaults, arguments[0]);
     }
     else {
@@ -85,6 +87,7 @@
    * @param maxColumnNum Maximum number of columns in the wrapperElement. Note: this is strictly a maximum and the actual column number will be adjusted based on space
    */
   Sposit.prototype.dynamicColumns = function (wrapperElement, maxColumnNum) {
+    console.log(wrapperElement);
     var wrapperElements = document.querySelectorAll(wrapperElement);
     var myThis = this;
     Array.prototype.forEach.call(wrapperElements, function (el) {
@@ -99,6 +102,7 @@
       }
 
       var columnCountProp = getsupportedprop(['ColumnCount', 'column-count', 'MozColumnCount', 'WebkitColumnCount']);
+      console.log(el)//debugging line
       el.style[columnCountProp] = maxColumnNum; // set maximum number of columns inline
 
     });
@@ -115,7 +119,8 @@
    * @returns {number|*} number of columns.
    */
   function possibleColumns(wrapperElement, options) {
-    var currentColumnNumber = Math.floor(wrapperElement.offsetWidth / (options.minColumnWidth + options.columnOffset));
+
+    var currentColumnNumber = Math.floor(wrapperElement.offsetWidth / (Number(options.minColumnWidth) + Number(options.columnOffset)));
     if (currentColumnNumber > options.maxColumnNum && options.maxColumnNum !== 'dynamic') {
       currentColumnNumber = options.maxColumnNum;
     }

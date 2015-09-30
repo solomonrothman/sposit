@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sposit Example</title>
+  <meta name="description" content="Shows specific examples that use the features of the Sposit library">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../sposit.css">
+
+
+  <script src="../sposit.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <style>
+
+      label{display: inline-block;
+          padding: 10px;
+          margin: 10px;
+      }
+      input{
+          display: block;
+      }
+      /* For the purpose of this demo we will inline the Sposit CSS*/
+      /* Set wrapper properties for CSS3 multiple column module with basic defaults to 1 and basic styling*/
+      .sposit-column-wrapper, .sposit-untargeted-wrapper{
+          column-count: 1;
+          -webkit-column-count: 1; /* Chrome, Safari, Opera */
+          -moz-column-count: 1; /* Firefox */
+
+          column-width: 240px;
+          -webkit-column-width: 240px;
+          -moz-column-width: 240px;
+
+          column-fill: balance;
+          -moz-column-fill: balance;
+          -webkit-column-fill: balance;
+
+          -webkit-column-rule-width: 1px;
+          -webkit-column-rule-style: solid;
+          -webkit-column-rule-color: black;
+          -moz-column-column-rule-width: 1px;
+          -moz-column-column-rule-style: solid;
+          -moz-column-column-rule-color: black;
+
+          column-gap: balance;
+          -moz-column-gap: balance;
+          -webkit-column-gap: balance;
+      }
+
+      /* Set container properties for the elements inside .sposit-column-wrapper, enforces a min-width and inline-block to ensure the deafult layout is coherent.*/
+      .sposit-container, .sposit-untargeted-container{
+          -webkit-column-break-inside: avoid;
+          -moz-column-break-inside: avoid;
+          column-break-inside: avoid;
+          min-width: 240px;
+          display: inline-block;
+      }
+
+      /* Can cause distortion, but makes sure the image fills the entire column even when resized.*/
+      .sposit-column-wrapper img, .sposit-untargeted-wrapper img{
+          width: 100%;
+      }
+
+      /* Provides a symantic class to have an element span all columns */
+      .sposit-span-all {
+          -webkit-column-span: all;
+          column-span: all;
+          -moz-column-span: all;
+      }
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <h1>Sposit Examples</h1>
+
+  <a href="#basic-example">Basic Example</a><br />
+  <a href="#dynamic-example">Dynamic Example</a><br />
+  <a href="#advanced-dynamic-example">Advanced Dynamic Example</a>
+
+
+  <a href="" name="basic-example"></a>
+  <h2>Basic example with no defaults</h2>
+  <div class="sposit-column-wrapper">
+
+      <div class="sposit-container" id="block1">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi.
+
+          condimentum dui. Suspendisse vitae lacinia lectus. Suspendisse
+          dapibus erat eu augue consectetur blandit.
+      </div>
+
+      <div class="sposit-container" id="block2">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+
+      <div class="sposit-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+
+      <div class="sposit-container">
+          <hr>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+
+      <div class="sposit-container">
+          <hr>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+
+      <div class="sposit-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+
+      <div class="sposit-container">
+          <hr>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+
+  </div>
+  <script>
+  new Sposit();
+  </script>
+
+  <a href="" name="dynamic-example"></a>
+  <h2>Basic Example with dynamically added columns and no defaults except the wrapper element</h2>
+  <script>
+      $(function() {
+          // Handler for .ready() called.
+
+          $( ".add-column" ).on( "click", function() {
+              var spositExampleColumn = $('#example-1-wrapper .sposit-container:first').clone();
+              $('#example-1-wrapper .sposit-container:last').after(spositExampleColumn);
+              new Sposit({wrapperElement: '.sposit-untargeted-wrapper',});
+          });
+
+          $( ".remove-column" ).on( "click", function() {
+              var spositExampleColumn = $('#example-1-wrapper .sposit-container:last');
+              spositExampleColumn.remove();
+              new Sposit({wrapperElement: '.sposit-untargeted-wrapper',});
+          });
+
+          new Sposit({wrapperElement: '.sposit-untargeted-wrapper',});
+      });
+
+  </script>
+
+  <button class="add-column">Add Column</button>
+  <button class="remove-column">Remove Column</button>
+
+
+   <div id="example-1-wrapper" class="sposit-untargeted-wrapper">
+       <div class="sposit-container sposit-untargeted-container">
+           <hr>
+           <img src="http://placehold.it/350x150">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+           diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+           metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+           Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+           porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+           ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+           Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+           consectetur blandit.
+       </div>
+       <div class="sposit-container sposit-untargeted-container">
+           <hr>
+           <img src="http://placehold.it/350x150">
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+           diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+           metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+           Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+           porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+           ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+           Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+           consectetur blandit.
+       </div>
+   </div>
+
+  <script>
+      $(function() {
+          // Handler for .ready() called.
+
+
+          new Sposit({
+              wrapperElement: '#advanced-form-container',
+              containerElement: 'label',
+
+          });
+
+        new Sposit({
+              wrapperElement: '#example-2-wrapper',
+              containerElement: '.sposit-untargeted-container',
+
+          });
+
+
+          $( ".adv-add-column" ).on( "click", function() {
+              var spositExampleColumn = $('#example-2-wrapper .sposit-container:first').clone();
+              $('#example-2-wrapper .sposit-container:last').after(spositExampleColumn);
+              $('#advanced-sposit-example').trigger("submit");
+          });
+
+          $( ".adv-remove-column" ).on( "click", function() {
+              var spositExampleColumn = $('#example-2-wrapper .sposit-container:last');
+              spositExampleColumn.remove();
+              $('#advanced-sposit-example').trigger("submit");
+          });
+
+          $('#advanced-sposit-example').submit(function(event){
+                      event.preventDefault();
+
+                      var values = {};
+                      $.each($('#advanced-sposit-example').serializeArray(), function(i, field) {
+                          values[field.name] = field.value;
+                      });
+
+                      console.log(values);
+
+                      var options = {
+                          minColumnWidth: values['minColumnWidth'],
+                          wrapperElement: values['wrapperElement'],
+                          containerElement: values['containerElement'],
+                          maxColumnNum: values['maxColumnNum'],
+                          gap: values['gap'],
+                          respondOnResize: values['respondOnResize'],
+                          columnOffset: values['columnOffset']
+                      };
+
+                      new Sposit(options);
+                  }
+
+          );
+      });
+
+
+
+
+  </script>
+
+  <a href="" name="advanced-dynamic-example"></a>
+  <h2>Advanced Example with Dynamic Columns</h2>
+  <p>Submit the form below to dynamically change the default sposit properties, also note: the form itself is laid out with sposit and 2 lines of css!</p>
+  <form id="advanced-sposit-example">
+    <div id="advanced-form-container">
+      <label>Sets the minimum column width, anything below this will responsivly break on the next line<br /><input type="text" name="minColumnWidth" value="240"></label>
+      <label>Wrapper element that contains the columns you want to "sposit"<br /><input type="text" name="wrapperElement" value="#example-2-wrapper"></label>
+      <label>Column element<br /><input type="text" name="containerElement" value=".sposit-container"></label>
+      <label>Maximum number of columns allowed<br /><input type="text" name="maxColumnNum" value="dynamic"><br /><em>If this is set to dynamic instead of a number, it will have a maximum column number of the number of minimum width columns that fit on the screen. Note: this may cause a large number of columns to show up on big monitors (6 columns+)</em></label>
+      <label>Gap between columns<input type="text" name="gap" value="balance"></label>
+      <label>Should sposit be recalled on resize? Usually the inline css is enough.<input type="text" name="respondOnResize" value="true"></label>
+      <label>Sets columnOffset property<input type="text" name="columnOffset" value="10"> </label>
+    </div>
+      <button type="submit">Change Properties</button>
+      <button class="adv-add-column">Add Column</button>
+      <button class="adv-remove-column">Remove Column</button>
+  </form>
+
+  <div id="example-2-wrapper" class="sposit-untargeted-wrapper">
+      <div class="sposit-container sposit-untargeted-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+      <div class="sposit-container sposit-untargeted-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+      <div class="sposit-container sposit-untargeted-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+      <div class="sposit-container sposit-untargeted-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+      <div class="sposit-container sposit-untargeted-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+      <div class="sposit-container sposit-untargeted-container">
+          <hr>
+          <img src="http://placehold.it/350x150">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna
+          diam, volutpat eget ornare eget, mollis quis nisi. Phasellus ac elit
+          metus. Nunc vehicula dolor sapien, sodales egestas erat sodales ut.
+          Nulla et cursus tortor, sit amet cursus mi. Donec ultrices sodales
+          porttitor. Pellentesque nec ultrices ex. Interdum et malesuada fames
+          ac ante ipsum primis in faucibus. Aliquam ac condimentum dui.
+          Suspendisse vitae lacinia lectus. Suspendisse dapibus erat eu augue
+          consectetur blandit.
+      </div>
+  </div>
+
+
+</body>
+</html>
