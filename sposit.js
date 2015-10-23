@@ -1,10 +1,10 @@
 /**
- * Sposit v0.1
+ * Sposit v0.2
  *
  *The Sposit positioning library for creating/displaying dynamic responsive columns. It's highly opinionated and built on jQuery and CSS 3
  *
  * @file Main js file for the Sposit library
- * @version 0.1
+ * @version 0.2
  * @author Solomon Rothman [solomonrothman@gmail.com]
  * @type {sposit}
  * @license
@@ -50,6 +50,7 @@
       maxColumnNum: 'dynamic',
       gap: 'balance',
       respondOnResize: 'true',
+      disperseXEvenly: 'true',
       columnOffset: 10
     };
 
@@ -78,6 +79,25 @@
     return this.options;
   };
 
+  Sposit.prototype.getContainerElements = function (wrapperElement, containerElement, order) {
+    var combinedSelector = wrapperElement + ' ' + containerElement;
+    var containers = document.querySelectorAll(combinedSelector);
+  // console.log(typeof order);
+
+    switch (order) {
+      case "all":
+        return containers;
+        break;
+      case "first":
+        return containers[0];
+        break;
+      case "last":
+        return containers[(containers.length - 1)];
+        break;
+    }
+  }
+
+
   /**
    * calculates the maximum number of columns that fit inside the wrapper and sets them inline
    * @memberOf Sposit
@@ -87,23 +107,41 @@
    * @param maxColumnNum Maximum number of columns in the wrapperElement. Note: this is strictly a maximum and the actual column number will be adjusted based on space
    */
   Sposit.prototype.dynamicColumns = function (wrapperElement, maxColumnNum) {
-    console.log(wrapperElement);
-    var wrapperElements = document.querySelectorAll(wrapperElement);
+    var wrapperElements = this.getContainerElements(wrapperElement, '', 'all');
     var myThis = this;
+    var containerElement = myThis.options.containerElement;
+    var minColumnWidth = myThis.options.minColumnWidth;
     Array.prototype.forEach.call(wrapperElements, function (el) {
-
       if (maxColumnNum == 'dynamic') {
         //get maxColumn number based on the position of the end column element and the minimum column width
         maxColumnNum = possibleColumns(el, myThis.options);
       }
-
-      if (el.querySelectorAll(myThis.options.containerElement).length < maxColumnNum) {
-        maxColumnNum = el.querySelectorAll(myThis.options.containerElement).length;
+      if (el.querySelectorAll(containerElement).length < maxColumnNum) {
+        maxColumnNum = el.querySelectorAll(containerElement).length;
       }
 
       var columnCountProp = getsupportedprop(['ColumnCount', 'column-count', 'MozColumnCount', 'WebkitColumnCount']);
-      console.log(el)//debugging line
-      el.style[columnCountProp] = maxColumnNum; // set maximum number of columns inline
+
+      // set maximum number of columns inline
+      el.style[columnCountProp] = maxColumnNum;
+
+      if (myThis.options.disperseXEvenly == 'true') {
+        setTimeout(function(){
+        // Added a very slight delay to make sure the DOM has been updated.
+        var spositWrapperWidth = el.offsetWidth;
+        var containers = el.querySelectorAll(containerElement);
+        var lastContainer = containers[(containers.length - 1)];
+        var lastColumnContainer = containers[maxColumnNum - 1];
+        var lastColumnLeft = lastColumnContainer.offsetLeft;
+        var lastContainerWidth = lastContainer.offsetWidth;
+        var lastContainerLeft = lastContainer.offsetLeft;
+        var spaceLeft = spositWrapperWidth - lastContainerLeft;
+        var spaceLeftColumn = spositWrapperWidth - lastColumnLeft;
+        if (spaceLeft >= (lastContainerWidth) && spaceLeftColumn >= (lastContainerWidth)) {
+          el.style[columnCountProp]= maxColumnNum - 1;
+        } }
+        ,200);
+      }
 
     });
   };
@@ -119,8 +157,8 @@
    * @returns {number|*} number of columns.
    */
   function possibleColumns(wrapperElement, options) {
-
     var currentColumnNumber = Math.floor(wrapperElement.offsetWidth / (Number(options.minColumnWidth) + Number(options.columnOffset)));
+
     if (currentColumnNumber > options.maxColumnNum && options.maxColumnNum !== 'dynamic') {
       currentColumnNumber = options.maxColumnNum;
     }
@@ -133,6 +171,9 @@
     else {
       wrapperElement.className += ' ' + columnClass;
     }
+    if (options['disperseXEvenly'] = 'true') {
+      var containers = wrapperElement.querySelectorAll(options['containerElement']);
+    }
     return currentColumnNumber;
   }
 
@@ -144,6 +185,7 @@
    * @param that object to initialize events on
    */
   function initializeEvents(that) {
+    // console.log(that.getOptions());
     window.onresize = function (event) {
       that.dynamicColumns(that.options.wrapperElement, that.options.maxColumnNum);
     }
